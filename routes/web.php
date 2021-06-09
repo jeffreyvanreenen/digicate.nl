@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MollieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/nieuwefactuur', [MollieController::class, 'NieuweFactuur']);
+Route::get('/status_betaling/{id}', [MollieController::class, 'StatusBetaling']);
+Route::get('/succes', [MollieController::class, 'succes']);
+Route::post('/mollie-webhook', [MollieController::class, 'Webhook']);
 
 require __DIR__.'/auth.php';
