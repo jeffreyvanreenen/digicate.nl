@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use Illuminate\Http\Request;
-use Mail;
+use App\Mail\Notification;
+use Illuminate\Support\Facades\Mail;
 
 
 class MollieWebhookConroller extends Controller
