@@ -66,12 +66,12 @@ class MollieWebhookConroller extends Controller
             } elseif ($payment->isCanceled()) {
 
                 $id = $_POST["id"];
-                Invoice::where('mollie_payment_id', $id)->update(['status' => 'canceled']);
+                Invoice::where('mollie_payment_id', $id)->update(['status' => 'open']);
 
             } elseif ($payment->hasRefunds()) {
-
+                //Via Mollie terugbetaald
                 $id = $_POST["id"];
-                Invoice::where('mollie_payment_id', $id)->update(['status' => 'refunds']);
+                Invoice::where('mollie_payment_id', $id)->update(['status' => 'gecrediteerd']);
 
             } elseif ($payment->hasChargebacks()) {
 
