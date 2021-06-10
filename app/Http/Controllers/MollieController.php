@@ -31,8 +31,10 @@ class MollieController extends Controller
             ],
             "description" => "Inschrijfgeld Helvoetse Reddingsbrigade",
             "redirectUrl" => "https://digicate.nl/succes",
-            "webhookUrl"  => "https://digicate.nl/webhooks/mollie", 
+            "webhookUrl"  => "https://digicate.nl/webhooks/mollie",
         ]);
+
+        dd($payment);
 
         $payment = $payment->getCheckoutUrl();
 
