@@ -40,9 +40,10 @@ class MollieWebhookConroller extends Controller
                  * At this point you'd probably want to start the process of delivering the product to the customer.
                  */
 
-                $invoice = Invoice::where('mollie_payment_id', '=', get($_POST["id"]);
-                $invoice->status = 'betaald';
-                $invoice->save();
+                $id = $_POST["id"];
+                Invoice::where('mollie_payment_id', $id)->update(['status' => 'betaald']);
+
+
 
             } elseif ($payment->isOpen()) {
                 /*
