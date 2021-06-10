@@ -43,38 +43,41 @@ class MollieWebhookConroller extends Controller
                 $id = $_POST["id"];
                 Invoice::where('mollie_payment_id', $id)->update(['status' => 'betaald']);
 
-
-
             } elseif ($payment->isOpen()) {
-                /*
-                 * The payment is open.
-                 */
+
+                $id = $_POST["id"];
+                Invoice::where('mollie_payment_id', $id)->update(['status' => 'open']);
+
             } elseif ($payment->isPending()) {
-                /*
-                 * The payment is pending.
-                 */
+
+                $id = $_POST["id"];
+                Invoice::where('mollie_payment_id', $id)->update(['status' => 'pending']);
+
             } elseif ($payment->isFailed()) {
-                /*
-                 * The payment has failed.
-                 */
+
+                $id = $_POST["id"];
+                Invoice::where('mollie_payment_id', $id)->update(['status' => 'open']);
+
             } elseif ($payment->isExpired()) {
-                /*
-                 * The payment is expired.
-                 */
+
+                $id = $_POST["id"];
+                Invoice::where('mollie_payment_id', $id)->update(['status' => 'open']);
+
             } elseif ($payment->isCanceled()) {
-                /*
-                 * The payment has been canceled.
-                 */
+
+                $id = $_POST["id"];
+                Invoice::where('mollie_payment_id', $id)->update(['status' => 'canceled']);
+
             } elseif ($payment->hasRefunds()) {
-                /*
-                 * The payment has been (partially) refunded.
-                 * The status of the payment is still "paid"
-                 */
+
+                $id = $_POST["id"];
+                Invoice::where('mollie_payment_id', $id)->update(['status' => 'refunds']);
+
             } elseif ($payment->hasChargebacks()) {
-                /*
-                 * The payment has been (partially) charged back.
-                 * The status of the payment is still "paid"
-                 */
+
+                $id = $_POST["id"];
+                Invoice::where('mollie_payment_id', $id)->update(['status' => 'chargeback']);
+
             }
         } catch (\Mollie\Api\Exceptions\ApiException $e) {
             echo "API call failed: " . htmlspecialchars($e->getMessage());
