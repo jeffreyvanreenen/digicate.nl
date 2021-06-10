@@ -88,10 +88,6 @@ class FacturenController extends Controller
 
     public static function mandaat_intrekken()
     {
-        if($facturen->status != 'open'){
-            return redirect()->route('financieel.mijn_facturen');
-        }
-
         $mollie = new FacturenController();
         $mollie = $mollie->Mollie_aanroepen();
 
@@ -116,6 +112,10 @@ class FacturenController extends Controller
             ->with('factuurregels')
             ->first();
 
+        if($facturen->status != 'open'){
+            return redirect()->route('financieel.mijn_facturen');
+        }
+        
         $totaal = 0;
 
         foreach($facturen->factuurregels as $factuurregel) {
