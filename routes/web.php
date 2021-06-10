@@ -23,6 +23,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/mail', function () {
+    return view('mails.notification');
+});
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/nieuwefactuur', [MollieController::class, 'NieuweFactuur']);
     Route::get('/status_betaling/{id}', [MollieController::class, 'StatusBetaling']);

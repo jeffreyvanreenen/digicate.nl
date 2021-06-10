@@ -84,9 +84,11 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'norepy@digicate.nl'),
+        'name' => env('MAIL_FROM_NAME', 'DigiCate'),
     ],
+
+    'reply_to' => ['address' => 'norepy@digicate.nl', 'name' => 'DigiCate'],
 
     /*
     |--------------------------------------------------------------------------

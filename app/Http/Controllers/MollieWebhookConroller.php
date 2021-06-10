@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use Mail;
 
 
 class MollieWebhookConroller extends Controller
@@ -33,7 +34,6 @@ class MollieWebhookConroller extends Controller
              * Update the invoice in the database.
              */
             Invoice::where('id', $factuurid)->update(['status' => $payment->status]);
-            //database_write($orderId, $payment->status);
 
             if ($payment->isPaid() && ! $payment->hasRefunds() && ! $payment->hasChargebacks()) {
                 /*
@@ -41,40 +41,34 @@ class MollieWebhookConroller extends Controller
                  * At this point you'd probably want to start the process of delivering the product to the customer.
                  */
 
+                $details = [
+                    'title' => 'Hoi daar Jeffrey!',
+                    'body' => 'Uw factuur met factuurnummer 202100001 is betaald. Bedankt voor uw betaling!'
+                ];
+
+                Mail::to('jeffrey92.hrb@gmail.com')->send(new \App\Mail\Notification($details));
+
+
             } elseif ($payment->isOpen()) {
 
-                $id = $_POST["id"];
-                Invoice::where('mollie_payment_id', $id)->update(['status' => 'open']);
 
             } elseif ($payment->isPending()) {
 
-                $id = $_POST["id"];
-                Invoice::where('mollie_payment_id', $id)->update(['status' => 'pending']);
 
             } elseif ($payment->isFailed()) {
 
-                $id = $_POST["id"];
-                Invoice::where('mollie_payment_id', $id)->update(['status' => 'open']);
 
             } elseif ($payment->isExpired()) {
 
-                $id = $_POST["id"];
-                Invoice::where('mollie_payment_id', $id)->update(['status' => 'open']);
 
             } elseif ($payment->isCanceled()) {
 
-                $id = $_POST["id"];
-                Invoice::where('mollie_payment_id', $id)->update(['status' => 'open']);
 
             } elseif ($payment->hasRefunds()) {
                 //Via Mollie terugbetaald
-                $id = $_POST["id"];
-                Invoice::where('mollie_payment_id', $id)->update(['status' => 'gecrediteerd']);
 
             } elseif ($payment->hasChargebacks()) {
-
-                $id = $_POST["id"];
-                Invoice::where('mollie_payment_id', $id)->update(['status' => 'open']);
+                //Door gebruiker terug geboekt
 
             }
         } catch (\Mollie\Api\Exceptions\ApiException $e) {
