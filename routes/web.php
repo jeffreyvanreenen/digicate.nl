@@ -29,3 +29,4 @@ Route::get('/succes', [MollieController::class, 'succes']);
 Route::name('webhooks.mollie')->post('webhooks/mollie', 'MollieWebhookController@handle');
 
 require __DIR__.'/auth.php';
+
