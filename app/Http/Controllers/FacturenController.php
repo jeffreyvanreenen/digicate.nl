@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use phpDocumentor\Reflection\Types\Null_;
-use App\Models\invoice;
+use App\Models\Invoice;
 use App\Models\Factuurregel;
 
 class FacturenController extends Controller
