@@ -30,8 +30,9 @@ class MollieWebhookConroller extends Controller
             $factuurid = $payment->metadata->factuurid;
 
             /*
-             * Update the order in the database.
+             * Update the invoice in the database.
              */
+            Invoice::where('id', $factuurid)->update(['status' => $payment->status]);
             //database_write($orderId, $payment->status);
 
             if ($payment->isPaid() && ! $payment->hasRefunds() && ! $payment->hasChargebacks()) {
@@ -39,10 +40,7 @@ class MollieWebhookConroller extends Controller
                  * The payment is paid and isn't refunded or charged back.
                  * At this point you'd probably want to start the process of delivering the product to the customer.
                  */
-
-                $id = $_POST["id"];
-                Invoice::where('mollie_payment_id', $id)->update(['status' => 'betaald']);
-
+                
             } elseif ($payment->isOpen()) {
 
                 $id = $_POST["id"];
