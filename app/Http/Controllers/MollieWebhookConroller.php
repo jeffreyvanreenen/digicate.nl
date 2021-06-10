@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use Illuminate\Http\Request;
-use App\Mail\Notification;
-use Illuminate\Support\Facades\Mail;
+
 
 
 class MollieWebhookConroller extends Controller
@@ -43,7 +42,7 @@ class MollieWebhookConroller extends Controller
                  * At this point you'd probably want to start the process of delivering the product to the customer.
                  */
 
-                Mail::to('jeffrey92.hrb@gmail.com')->send(new Notification());
+               // Mail::to('jeffrey92.hrb@gmail.com')->send(new Notification());
 
 
             } elseif ($payment->isOpen()) {
