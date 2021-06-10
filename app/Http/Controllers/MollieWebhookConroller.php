@@ -46,7 +46,7 @@ class MollieWebhookConroller extends Controller
                     'body' => 'Uw factuur met factuurnummer 202100001 is betaald. Bedankt voor uw betaling!'
                 ];
 
-                Mail::to('jeffrey92.hrb@gmail.com')->send(new \App\Mail\Notification($details));
+                \Mail::to('jeffrey92.hrb@gmail.com')->send(new \App\Mail\Notification($details));
 
 
             } elseif ($payment->isOpen()) {
