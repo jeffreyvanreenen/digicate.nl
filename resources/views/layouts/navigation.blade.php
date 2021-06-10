@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('mijn_facturen')">
+                    <x-nav-link :href="route('financieel.mijn_facturen')" :active="request()->routeIs('financieel.mijn_facturen')">
                         {{ __('Mijn facturen') }}
                     </x-nav-link>
                 </div>

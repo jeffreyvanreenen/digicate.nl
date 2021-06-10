@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MollieController;
+use App\Http\Controllers\FacturenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,11 +23,16 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/nieuwefactuur', [MollieController::class, 'NieuweFactuur']);
-Route::get('/status_betaling/{id}', [MollieController::class, 'StatusBetaling']);
-Route::get('/succes', [MollieController::class, 'succes']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/nieuwefactuur', [MollieController::class, 'NieuweFactuur']);
+    Route::get('/status_betaling/{id}', [MollieController::class, 'StatusBetaling']);
+    Route::get('/succes', [MollieController::class, 'succes']);
 
-
+    Route::get('/financieel/mijn_facturen', [FacturenController::class, 'index'])->name('financieel.mijn_facturen');
+    Route::get('/financieel/mandaat_afgeven', [FacturenController::class, 'mandaat_afgeven'])->name('financieel.mandaat_afgeven');
+    Route::get('/financieel/mandaat_intrekken', [FacturenController::class, 'mandaat_intrekken'])->name('financieel.mandaat_intrekken');
+    Route::get('/financieel/factuur_betalen/{id}', [FacturenController::class, 'factuurbetalen'])->name('financieel.factuur_betalen');
+});
 
 //Route::name('webhooks.mollie')->post('/webhooks/mollie', 'MollieWebhookController@handle');
 
