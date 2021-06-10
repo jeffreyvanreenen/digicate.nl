@@ -33,7 +33,7 @@ class MollieController extends Controller
             "redirectUrl" => "https://digicate.nl/succes",
             "webhookUrl"  => "https://digicate.nl/webhooks/mollie",
         ]);
-        
+
 
         $payment = $payment->getCheckoutUrl();
 

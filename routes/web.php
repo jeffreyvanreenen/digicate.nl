@@ -26,7 +26,7 @@ Route::get('/nieuwefactuur', [MollieController::class, 'NieuweFactuur']);
 Route::get('/status_betaling/{id}', [MollieController::class, 'StatusBetaling']);
 Route::get('/succes', [MollieController::class, 'succes']);
 
-Route::name('webhooks.mollie')->post('webhooks/mollie', 'MollieWebhookController@handle');
+Route::name('webhooks.mollie')->post('/webhooks/mollie', 'MollieWebhookController@handle');
 
 require __DIR__.'/auth.php';
 
