@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MollieController;
 use App\Http\Controllers\FacturenController;
+use App\Mail\Notification;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +40,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/financieel/factuur_betalen/{id}', [FacturenController::class, 'factuurbetalen'])->name('financieel.factuur_betalen');
 });
 
-//Route::name('webhooks.mollie')->post('/webhooks/mollie', 'MollieWebhookController@handle');
+Route::get('/send-mail', function () {
+
+    Mail::to('jeffrey92.hrb@gmail.com')->send(new Notification());
+
+    return 'A message has been sent to Mailtrap!';
+
+});
 
 require __DIR__.'/auth.php';
 

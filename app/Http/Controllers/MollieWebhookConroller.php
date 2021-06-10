@@ -9,7 +9,8 @@ use Mail;
 
 class MollieWebhookConroller extends Controller
 {
-    public function handle(Request $request) {
+    public function handle(Request $request)
+    {
 
         try {
             /*
@@ -18,9 +19,9 @@ class MollieWebhookConroller extends Controller
              * See: https://www.mollie.com/dashboard/developers/api-keys
              */
             $mollie = new \Mollie\Api\MollieApiClient();
-            if(env('MOLIE_STATUS') == 'test') {
+            if (env('MOLIE_STATUS') == 'test') {
                 $mollie->setApiKey(env('MOLLIE_TEST_KEY'));
-            }elseif(env('MOLIE_STATUS') == 'live') {
+            } elseif (env('MOLIE_STATUS') == 'live') {
                 $mollie->setApiKey(env('MOLLIE_KEY'));
             }
 
@@ -35,7 +36,7 @@ class MollieWebhookConroller extends Controller
              */
             Invoice::where('id', $factuurid)->update(['status' => $payment->status]);
 
-            if ($payment->isPaid() && ! $payment->hasRefunds() && ! $payment->hasChargebacks()) {
+            if ($payment->isPaid() && !$payment->hasRefunds() && !$payment->hasChargebacks()) {
                 /*
                  * The payment is paid and isn't refunded or charged back.
                  * At this point you'd probably want to start the process of delivering the product to the customer.
@@ -46,7 +47,11 @@ class MollieWebhookConroller extends Controller
                     'body' => 'Uw factuur met factuurnummer 202100001 is betaald. Bedankt voor uw betaling!'
                 ];
 
-                // \Mail::to('jeffrey92.hrb@gmail.com')->send(new \App\Mail\Notification($details));
+                $to_name = "Jeffrey van Reenen";
+                $to_email = "jeffrey92.hrb@gmail.com";
+                $data = array(‘name’ => "DigiCate", “body” => “A test mail”);
+
+                Mail::to('jeffrey92.hrb@gmail.com')->send(new Notification());
 
 
             } elseif ($payment->isOpen()) {

@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Mail;
-
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class Notification extends Mailable
 {
@@ -16,9 +14,9 @@ class Notification extends Mailable
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct()
     {
-        $this->details = $details;
+        //
     }
 
     /**
@@ -28,7 +26,12 @@ class Notification extends Mailable
      */
     public function build()
     {
-        return $this->subject('testmail betaling')
-        ->view('mails.notification');
+        return $this->from('noreply@digicate.nl', 'DigiCate')
+            ->subject('Mailtrap Confirmation')
+            ->markdown('mails.notification')
+            ->with([
+                'name' => 'Jeffrey',
+                'link' => '/inboxes/'
+            ]);
     }
 }
