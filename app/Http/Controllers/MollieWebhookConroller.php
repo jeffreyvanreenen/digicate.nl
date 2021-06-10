@@ -22,12 +22,12 @@ class MollieWebhookConroller extends Controller
              * Retrieve the payment's current state.
              */
             $payment = $mollie->payments->get($_POST["id"]);
-            $orderId = $payment->metadata->order_id;
+            //$orderId = $payment->metadata->order_id;
 
             /*
              * Update the order in the database.
              */
-            database_write($orderId, $payment->status);
+            //database_write($orderId, $payment->status);
 
             if ($payment->isPaid() && ! $payment->hasRefunds() && ! $payment->hasChargebacks()) {
                 /*
@@ -74,10 +74,6 @@ class MollieWebhookConroller extends Controller
 
     public function handmatig($id) {
 
-        $id = get($id);
-        dd($id);
-        exit;
-
         try {
             /*
              * Initialize the Mollie API library with your API key.
@@ -91,12 +87,12 @@ class MollieWebhookConroller extends Controller
              * Retrieve the payment's current state.
              */
             $payment = $mollie->payments->get($id);
-            $orderId = $payment->metadata->order_id;
+            //$orderId = $payment->metadata->order_id;
 
             /*
              * Update the order in the database.
              */
-            database_write($orderId, $payment->status);
+            //database_write($orderId, $payment->status);
 
             if ($payment->isPaid() && ! $payment->hasRefunds() && ! $payment->hasChargebacks()) {
                 /*
@@ -115,6 +111,7 @@ class MollieWebhookConroller extends Controller
                 /*
                  * The payment has failed.
                  */
+                echo 'failed';
             } elseif ($payment->isExpired()) {
                 /*
                  * The payment is expired.
