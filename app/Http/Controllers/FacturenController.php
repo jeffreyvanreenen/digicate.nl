@@ -115,7 +115,7 @@ class FacturenController extends Controller
         if($facturen->status != 'open'){
             return redirect()->route('financieel.mijn_facturen');
         }
-        
+
         $totaal = 0;
 
         foreach($facturen->factuurregels as $factuurregel) {

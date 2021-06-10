@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 
 
@@ -38,6 +39,11 @@ class MollieWebhookConroller extends Controller
                  * The payment is paid and isn't refunded or charged back.
                  * At this point you'd probably want to start the process of delivering the product to the customer.
                  */
+
+                $invoice = Invoice::where('mollie_payment_id', '=', get($_POST["id"]);
+                $invoice->status = 'betaald';
+                $invoice->save();
+
             } elseif ($payment->isOpen()) {
                 /*
                  * The payment is open.
