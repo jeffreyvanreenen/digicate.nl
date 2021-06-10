@@ -27,7 +27,7 @@ class MollieWebhookConroller extends Controller
              * Retrieve the payment's current state.
              */
             $payment = $mollie->payments->get($_POST["id"]);
-            $factuurnummer = $payment->metadata->factuurnummer;
+            $factuurid = $payment->metadata->factuurid;
 
             /*
              * Update the order in the database.
