@@ -27,7 +27,7 @@ class MollieWebhookConroller extends Controller
              * Retrieve the payment's current state.
              */
             $payment = $mollie->payments->get($_POST["id"]);
-            //$orderId = $payment->metadata->order_id;
+            $factuurnummer = $payment->metadata->factuurnummer;
 
             /*
              * Update the order in the database.
@@ -76,7 +76,7 @@ class MollieWebhookConroller extends Controller
             } elseif ($payment->hasChargebacks()) {
 
                 $id = $_POST["id"];
-                Invoice::where('mollie_payment_id', $id)->update(['status' => 'chargeback']);
+                Invoice::where('mollie_payment_id', $id)->update(['status' => 'open']);
 
             }
         } catch (\Mollie\Api\Exceptions\ApiException $e) {

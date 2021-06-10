@@ -144,6 +144,9 @@ class FacturenController extends Controller
             "customerId" => Auth::user()->mollie_customer_id,
             "redirectUrl" => "https://digicate.nl/financieel/mijn_facturen",
             "webhookUrl"  => "https://digicate.nl/api/webhooks/mollie",
+            "metadata" => [
+                "factuurid" => $facturen->id,
+            ],
         ]);
 
         $mollie_payment_id = $payment->id;
