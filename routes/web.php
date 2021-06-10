@@ -25,6 +25,8 @@ Route::get('/dashboard', function () {
 Route::get('/nieuwefactuur', [MollieController::class, 'NieuweFactuur']);
 Route::get('/status_betaling/{id}', [MollieController::class, 'StatusBetaling']);
 Route::get('/succes', [MollieController::class, 'succes']);
+Route::post('/webhooks/mollie', [\App\Http\Controllers\MollieWebhookConroller::class, 'handle']);
+
 
 Route::name('webhooks.mollie')->post('/webhooks/mollie', 'MollieWebhookController@handle');
 
