@@ -43,15 +43,6 @@ class MollieWebhookConroller extends Controller
                  * At this point you'd probably want to start the process of delivering the product to the customer.
                  */
 
-                $details = [
-                    'title' => 'Hoi daar Jeffrey!',
-                    'body' => 'Uw factuur met factuurnummer 202100001 is betaald. Bedankt voor uw betaling!'
-                ];
-
-                $to_name = "Jeffrey van Reenen";
-                $to_email = "jeffrey92.hrb@gmail.com";
-                $data = array(‘name’ => "DigiCate", “body” => “A test mail”);
-
                 Mail::to('jeffrey92.hrb@gmail.com')->send(new Notification());
 
 
