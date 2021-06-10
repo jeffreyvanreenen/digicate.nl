@@ -15,8 +15,8 @@ class MollieWebhookConroller extends Controller
              *
              * See: https://www.mollie.com/dashboard/developers/api-keys
              */
-            $mollie = new MollieController();
-            $mollie = $mollie->Mollie_aanroepen();
+            $mollie = new \Mollie\Api\MollieApiClient();
+            $mollie->setApiKey(env('MOLLIE_TEST_KEY'));
 
             /*
              * Retrieve the payment's current state.
