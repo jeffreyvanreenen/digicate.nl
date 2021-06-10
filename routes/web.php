@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/financieel/factuur_betalen/{id}', [FacturenController::class, 'factuurbetalen'])->name('financieel.factuur_betalen');
 });
 
-Route::name('webhooks.mollie')->post('/webhooks/mollie', 'MollieWebhookController@handle');
+//Route::name('webhooks.mollie')->post('/webhooks/mollie', 'MollieWebhookController@handle');
 
 require __DIR__.'/auth.php';
 
