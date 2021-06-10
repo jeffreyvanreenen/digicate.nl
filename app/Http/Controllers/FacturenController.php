@@ -160,4 +160,14 @@ class FacturenController extends Controller
         return redirect($payment_url);
     }
 
+    public function factuur_weergeven($id)
+    {
+        $factuur = Invoice::where('user_id', '=', Auth::user()->id)
+            ->where('id', '=', $id)
+            ->with('factuurregels')
+            ->first();
+
+        return view('financieel.invoice')->with('factuur', $factuur);
+    }
+
 }

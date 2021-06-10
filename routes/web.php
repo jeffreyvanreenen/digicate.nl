@@ -38,6 +38,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/financieel/mandaat_afgeven', [FacturenController::class, 'mandaat_afgeven'])->name('financieel.mandaat_afgeven');
     Route::get('/financieel/mandaat_intrekken', [FacturenController::class, 'mandaat_intrekken'])->name('financieel.mandaat_intrekken');
     Route::get('/financieel/factuur_betalen/{id}', [FacturenController::class, 'factuurbetalen'])->name('financieel.factuur_betalen');
+    Route::get('/financieel/factuur_weergeven/{id}', [FacturenController::class, 'factuur_weergeven'])->name('financieel.factuur_weergeven');
+
 });
 
 Route::get('/send-mail', function () {

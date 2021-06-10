@@ -77,8 +77,9 @@
                                 </td>
                                 <td>
                                     @if(($factuur->status!='concept') and ($factuur->status!='betaald') and ($factuur->status!='gecrediteerd'))
-                                        <a href="{{ route('financieel.factuur_betalen', $factuur->id) }}">Betalen</a>
+                                        <a href="{{ route('financieel.factuur_betalen', $factuur->id) }}">Betalen</a> -
                                     @endif
+                                    <a href="{{ route('financieel.factuur_weergeven', $factuur->id) }}">Open</a>
                                 </td>
                             </tr>
                         @empty
