@@ -76,7 +76,7 @@
                                     {{ ucfirst($factuur->status) }}
                                 </td>
                                 <td>
-                                    @if(($factuur->status!='concept') and ($factuur->status!='paid') and ($factuur->status!='gecrediteerd'))
+                                    @if(($factuur->status!='concept') and ($factuur->status!='betaald') and ($factuur->status!='gecrediteerd'))
                                         <a href="{{ route('financieel.factuur_betalen', $factuur->id) }}">Betalen</a>
                                     @endif
                                 </td>
