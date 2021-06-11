@@ -29,4 +29,9 @@ class Invoice extends Model
         return $this->hasMany(Factuurregel::class);
     }
 
+    public function factuurlog()
+    {
+        return $this->hasMany(InvoiceLog::class)->orderBy('id', 'desc');
+    }
+
 }

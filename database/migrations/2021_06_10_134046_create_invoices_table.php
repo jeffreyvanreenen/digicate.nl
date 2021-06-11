@@ -21,6 +21,7 @@ class CreateInvoicesTable extends Migration
             $table->string('status')->default('concept');
             $table->string('factuurdatum');
             $table->string('vervaldatum');
+            $table->text('opmerkingen')->nullable();
             $table->string('mollie_payment_id')->nullable();
             $table->timestamps();
             $table->softDeletes();

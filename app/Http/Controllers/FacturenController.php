@@ -165,6 +165,7 @@ class FacturenController extends Controller
         $factuur = Invoice::where('user_id', '=', Auth::user()->id)
             ->where('id', '=', $id)
             ->with('factuurregels')
+            ->with('factuurlog')
             ->first();
 
         return view('financieel.invoice')->with('factuur', $factuur);
