@@ -212,12 +212,13 @@
                     <p>
                     <ul>
                         @php(setlocale(LC_ALL, 'nld_nld'))
-                        @foreach($factuur->factuurlog as $factuurlog)
+                        @forelse($factuur->factuurlog as $factuurlog)
                             @if($factuurlog->hide_for_user != 1)
                                 <li>- {{ date("d-m-Y H:i", $factuurlog->tijd) }} - {{ $factuurlog->omschrijving }}</li>
                             @endif
-
-                        @endforeach
+                        @empty()
+                            <li>- Geen log om weer te geven</li>
+                        @endforelse
                     </ul>
                     </p>
                 </div>
