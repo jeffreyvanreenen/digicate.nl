@@ -33,14 +33,6 @@
                             vertical-align: top;
                         }
 
-                        .invoice-box table tr td:nth-child(4) {
-                            text-align: right;
-                        }
-
-                        .invoice-box table tr.top table td {
-                            padding-bottom: 20px;
-                        }
-
                         .invoice-box table tr.top table td.title {
                             font-size: 45px;
                             line-height: 45px;
@@ -69,10 +61,7 @@
                             border-bottom: none;
                         }
 
-                        .invoice-box table tr.total td:nth-child(5) {
-                            border-top: 2px solid #eee;
-                            font-weight: bold;
-                        }
+
 
                         @media only screen and (max-width: 600px) {
                             .invoice-box table tr.top table td {
@@ -89,47 +78,41 @@
                         }
                     </style>
                     <div class="invoice-box">
-                        <table cellpadding="0" cellspacing="0">
-                            <tr class="top">
-                                <td colspan="2">
-                                    <table>
-                                        <tr>
-                                            <td class="title">
-                                                <img src="{{ asset('resources/images/logo-hrb.png') }}"
-                                                     style="width: 100%; max-width: 300px"/>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
 
-                                            <td style="text-align: right">
-                                                Factuur #: {{ $factuur->factuurnummer }}<br/>
-                                                Factuurdatum: {{ date("d-m-Y", $factuur->factuurdatum) }}<br/>
-                                                Vervaldatum: {{ date("d-m-Y", $factuur->vervaldatum) }}
-                                            </td>
-                                        </tr>
-                                    </table>
+                        <table>
+                            <tr>
+                                <td class="title">
+                                    <img src="{{ asset('resources/images/logo-hrb.png') }}"
+                                         style="width: 100%; max-width: 600px"/>
+                                </td>
+                                <td style="text-align: right">
+                                    <strong>Factuur nummer:</strong> {{ $factuur->factuurnummer }}<br/>
+                                        <strong>Factuurdatum:</strong> {{ date("d-m-Y", $factuur->factuurdatum) }}<br/>
+                                            <strong>Vervaldatum:</strong> {{ date("d-m-Y", $factuur->vervaldatum) }}<br/>
                                 </td>
                             </tr>
+                        </table>
 
+                        <table cellpadding="0" cellspacing="0">
                             <tr class="information">
                                 <td colspan="2">
                                     <table>
                                         <tr>
-                                            <td>
-                                                Sparksuite, Inc.<br/>
-                                                12345 Sunny Road<br/>
-                                                Sunnyville, CA 12345<br />
-                                                <p /><br />
-                                                Acme Corp.<br/>
-                                                John Doe<br/>
-                                                john@example.com
-                                            </td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
+                                            <td><small>
+                                                    <br /><br />
+                                                    <h1>Factuur</h1>
+                                                    <br />
+                                                Helvoetse Reddingsbrigade<br/>
+                                                Postbus 202<br/>
+                                                3220 AE, Hellevoetsluis<br />
+                                                </small> <p /><br /><br />
+                                                {{ Auth::user()->name }}<br/>
+                                                <small>{{ Auth::user()->email }}</small>
+                                                <br /><br /><br />
+                                                Betreft: {{ $factuur->omschrijving }}
 
-                                            <td>&nbsp;</td>
+
+                                            </td>
                                         </tr>
                                     </table>
                                 </td>
@@ -152,18 +135,29 @@
                                 <td>Aantal</td>
                                 <td>Prijs per Eenheid</td>
                                 <td>Eenheid</td>
+                                <td>btw</td>
 
-                                <td>Prijs</td>
+                                <td style="text-align: right">Prijs</td>
                             </tr>
 
                             @foreach($factuur->factuurregels as $factuurregel)
+
+                                @php($subtotaal = $factuurregel->aantal * $factuurregel->ppe)
+
+                                @if($factuurregel->btw == 21)
+                                    @php($subtotaal = $subtotaal * 1.21)
+                                @elseif($factuurregel->btw == 9)
+                                    @php($subtotaal = $subtotaal * 1.09)
+                                @endif
+
                             <tr class="item">
                                 <td>{{ $factuurregel->omschrijving }}</td>
                                 <td>{{ $factuurregel->aantal }}</td>
                                 <td>{{ $factuurregel->ppe }}</td>
                                 <td>PE</td>
+                                <td>{{ $factuurregel->btw }} &percnt;</td>
 
-                                <td></td>
+                                <td style="text-align: right">&euro; {{ number_format($subtotaal, 2, ',', '.') }}</td>
                             </tr>
                             @endforeach
 
@@ -174,8 +168,21 @@
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
+                                <td><strong>Totaal:</strong></td>
+                                @php($totaal = 0)
+                                {{--                                    $total = $factuur->factuurregels->sum('bedrag')--}}
+                                @foreach($factuur->factuurregels as $factuurregel)
+                                    @php($subtotaal = $factuurregel->aantal * $factuurregel->ppe)
 
-                                <td>Total: $385.00</td>
+                                    @if($factuurregel->btw == 21)
+                                        @php($subtotaal = $subtotaal * 1.21)
+                                    @elseif($factuurregel->btw == 9)
+                                        @php($subtotaal = $subtotaal * 1.09)
+                                    @endif
+
+                                    @php($totaal = $totaal + $subtotaal)
+                                @endforeach
+                                <td style="text-align: right">&euro; {{ number_format($totaal, 2, ',', '.') }}</td>
                             </tr>
                         </table>
                     </div>
