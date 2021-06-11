@@ -216,7 +216,7 @@
                             @if($factuurlog->hide_for_user != 1)
                                 <li>- {{ date("d-m-Y H:i", $factuurlog->tijd) }} - {{ $factuurlog->omschrijving }}</li>
                             @endif
-                        @empty()
+                        @empty
                             <li>- Geen log om weer te geven</li>
                         @endforelse
                     </ul>
