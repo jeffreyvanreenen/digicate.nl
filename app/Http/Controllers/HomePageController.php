@@ -25,7 +25,10 @@ class HomePageController extends Controller
         'buienindex' => $weerdata->weergegevens->actueel_weer->buienindex->waardepercentage,
         ]);
 
+        foreach($weerdata->weergegevens->actueel_weer->weerstations->children() as $station) {
+            if ($station->stationcode == '6330') { break; }
+        }
 
-        return view('welcome')->with('weerdata', $weerdata);
+        return view('welcome')->with('station', $station);
     }
 }

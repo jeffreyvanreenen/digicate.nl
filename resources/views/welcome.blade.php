@@ -68,10 +68,6 @@
             {{--                        </div>--}}
             {{--                    </li>--}}
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Zoeken" aria-label="Zoeken">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Zoeken</button>
-        </form>
     </div>
 </nav>
 <div class="headerimage_homepage">
@@ -82,17 +78,59 @@
     <div class="container vertical-center">
         <div class="row">
             <div class="col-sm">
-                <img src="{{ $weerdata->weergegevens->actueel_weer->buienradar->icoonactueel }}"><br />{{ $weerdata->weergegevens->actueel_weer->buienradar->icoonactueel['zin'] }}
-
+                {{ $station->icoonactueel['zin'] }}<br/>
+                <img src="{{ $station->icoonactueel  }}">
             </div>
             <div class="col-sm">
-                One of three columns
+                <stron>Temperatuur:</stron>
+                <br/>
+                <small>{{ $station->temperatuurGC }} &#x2103;</small>
             </div>
             <div class="col-sm">
-                One of three columns
+                <strong>Wind:</strong><br/>
+                <small>{{ $station->windsnelheidBF }} Bft - {{ $station->windrichting }}</small>
+            </div>
+            <div class="col-sm">
+                <strong>Luchtvochtigheid:</strong><br/>
+                <small>{{ $station->luchtvochtigheid }}&percnt;</small>
             </div>
         </div>
     </div>
+</div>
+
+<div class="container">
+<div class="row mb-5">
+    <div class="col-9">
+        <div class="card mt-5">
+            <div class="card-horizontal">
+                <div class="img-square-wrapper">
+                    <img class="" src="http://via.placeholder.com/150x150" alt="Card image cap">
+                </div>
+                <div class="card-body">
+                    <div id="newsTitle">Card title</div>
+                    <div id="newsDate">dinsdag 13 oktober 2020 </div>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-horizontal">
+                <div class="img-square-wrapper">
+                    <img class="" src="http://via.placeholder.com/150x150" alt="Card image cap">
+                </div>
+                <div class="card-body newsText">
+                    <div id="newsTitle">Card title</div>
+                    <div id="newsDate">dinsdag 13 oktober 2020 </div>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">col-4</div>
+</div>
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

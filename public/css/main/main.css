@@ -1,5 +1,10 @@
 body {
-    margin: 0;
+    margin:0;
+    background-color:#f4f2ee;
+    font-family: 'Roboto', sans-serif;
+    font-size:15px;
+    color:#000000;
+    font-weight:normal;
 }
 
 nav a {
@@ -40,7 +45,6 @@ nav a:hover {
 .headerimage_homepage {
     overflow: hidden;
     height: 600px;
-    max-height: 1000px;
     position: relative;
 }
 
@@ -50,7 +54,6 @@ nav a:hover {
     height: auto;
     position: absolute;
     bottom: 0;
-    background-image:url(/image/header.jpg);
     background-position: bottom center;
     background-repeat: no-repeat;
     box-sizing: border-box;
@@ -64,13 +67,42 @@ nav a:hover {
     position: relative;
     width: 100%;
     min-height: 100px;
-    padding-top: 10px;
+    padding-top: 20px;
     text-align: center;
     background-color: #ff5800;
     vertical-align: center;
     font-weight: bold;
     color: #ffffff;
-    font-size: 12px;
+}
+
+#weerinfo img {
+    filter: opacity(1.0) drop-shadow(0 0 0 white);
+}
+
+#content{
+    position:relative;
+    width:100%;
+    margin:0 auto 50px auto;
+}
+
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+#newsTitle{
+    font-size: 22px;
+    color: #ff5800;
+    font-weight: 600;
+    padding-top: 5px;
+}
+
+#newsDate {
+    color: #ff5800;
+    padding: 5px 0 20px 0;
 }
 
 
+.newsText{
+    max-width: 600px !important;
+}
