@@ -5,6 +5,7 @@ use App\Http\Controllers\MollieController;
 use App\Http\Controllers\FacturenController;
 use App\Mail\Notification;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\HomePageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,8 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomePageController::class, 'index'])->name('homepage');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
