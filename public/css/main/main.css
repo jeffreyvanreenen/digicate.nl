@@ -102,6 +102,14 @@ nav a:hover {
     padding: 5px 0 20px 0;
 }
 
+.img-square-wrapper img {
+    width: 200px;
+    height: 200px;
+}
+
+.card-horizontal:hover {
+    background: #a0aec0;
+}
 
 .newsText{
     max-width: 600px !important;
