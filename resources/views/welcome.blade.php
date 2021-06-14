@@ -83,8 +83,11 @@
     <div class="container vertical-center">
         <div class="row">
             <div class="col-sm">
+               <img src="{{ $station->icoonactueel  }}">
+            </div>
+            <div class="col-sm">
                 {{ $station->icoonactueel['zin'] }}<br/>
-                <img src="{{ $station->icoonactueel  }}">
+
             </div>
             <div class="col-sm">
                 <stron>Temperatuur:</stron>

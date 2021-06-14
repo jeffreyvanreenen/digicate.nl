@@ -49,14 +49,14 @@ nav a:hover {
 }
 
 .headerimage_homepage img {
-    display: block;
+    min-height: 500px;
     width: 100%;
-    height: auto;
     position: absolute;
     bottom: 0;
-    background-position: bottom center;
+    background-position: center;
     background-repeat: no-repeat;
-    box-sizing: border-box;
+    background-size: cover;
+    display: block;
 }
 
 .clear {
