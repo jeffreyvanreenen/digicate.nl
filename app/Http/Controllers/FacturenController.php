@@ -20,7 +20,7 @@ class FacturenController extends Controller
         }elseif(env('MOLIE_STATUS') == 'live') {
             $mollie->setApiKey(env('MOLLIE_KEY'));
         }
-        
+
         return $mollie;
     }
 
@@ -181,7 +181,8 @@ class FacturenController extends Controller
             ->with('factuurlog')
             ->first();
 
-//        $factuur = Invoice::all();
+
+
         $pdf = PDF::loadView('paginas.factuur_plain', compact('factuur', $factuur));
         $pdf->save(storage_path().'_factuur.pdf');
         return $pdf->download('student.pdf');
@@ -190,7 +191,7 @@ class FacturenController extends Controller
        // $pdf = PDF::loadView('paginas.factuur_plain')->with('factuur', $factuur)->save('client.pdf');
        // return $pdf->stream('client.pdf');
 
-       // return view('paginas.factuur_plain')->with('factuur', $factuur);
+//        return view('paginas.factuur_plain')->with('factuur', $factuur);
     }
 
 }

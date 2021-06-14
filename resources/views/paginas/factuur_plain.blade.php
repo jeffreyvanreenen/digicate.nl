@@ -19,14 +19,11 @@
 
     <style>
         .pagina {
-            position: relative;
+            position: absolute;
             width: 21cm;
             min-height: 29.7cm;
             padding: 2cm;
-            margin: 1cm auto;
             border: 1px solid #eee;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-            border-radius: 5px;
             font: 12pt "Calibri, sans-serif", serif;
             background: white;
         }
