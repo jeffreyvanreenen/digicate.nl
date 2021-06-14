@@ -20,6 +20,8 @@ class FacturenController extends Controller
         }elseif(env('MOLIE_STATUS') == 'live') {
             $mollie->setApiKey(env('MOLLIE_KEY'));
         }
+
+        $mollie->setApiKey('test_mRczbbzU4bKHHe9PeFHjGcJEjyGyKB');
         return $mollie;
     }
 
