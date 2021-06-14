@@ -23,6 +23,7 @@
             width: 21cm;
             min-height: 29.7cm;
             padding: 2cm;
+            margin: 0;
             border: 1px solid #eee;
             font: 12pt "Calibri, sans-serif", serif;
             background: white;

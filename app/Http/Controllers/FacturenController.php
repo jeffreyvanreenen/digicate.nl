@@ -188,9 +188,6 @@ class FacturenController extends Controller
         return $pdf->download('student.pdf');
 
 
-       // $pdf = PDF::loadView('paginas.factuur_plain')->with('factuur', $factuur)->save('client.pdf');
-       // return $pdf->stream('client.pdf');
-
 //        return view('paginas.factuur_plain')->with('factuur', $factuur);
     }
 
