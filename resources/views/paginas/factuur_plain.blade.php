@@ -28,6 +28,9 @@
             font: 12pt "Calibri, sans-serif", serif;
             background: white;
         }
+        @page { margin: 0px; }
+        body { margin: 0px; }
+        html { margin: 0px; }
 
         .header-blok {
             width: 100%;
