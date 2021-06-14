@@ -7,6 +7,7 @@ use Auth;
 use phpDocumentor\Reflection\Types\Null_;
 use App\Models\Invoice;
 use App\Models\Factuurregel;
+use PDF;
 
 class FacturenController extends Controller
 {
@@ -57,7 +58,7 @@ class FacturenController extends Controller
 
 
 
-        return view('financieel.mijn_facturen')->with('mandate', $mandate)->with('facturen', $facturen);
+        return view('paginas.mijn_facturen')->with('mandate', $mandate)->with('facturen', $facturen);
     }
 
     public static function mandaat_afgeven()
@@ -168,7 +169,27 @@ class FacturenController extends Controller
             ->with('factuurlog')
             ->first();
 
-        return view('financieel.invoice')->with('factuur', $factuur);
+        return view('paginas.factuur')->with('factuur', $factuur);
+    }
+
+    public function factuur_weergeven_plain($id)
+    {
+        $factuur = Invoice::where('user_id', '=', Auth::user()->id)
+            ->where('id', '=', $id)
+            ->with('factuurregels')
+            ->with('factuurlog')
+            ->first();
+
+//        $factuur = Invoice::all();
+        $pdf = PDF::loadView('paginas.factuur_plain', compact('factuur', $factuur));
+        $pdf->save(storage_path().'_factuur.pdf');
+        return $pdf->download('student.pdf');
+
+
+       // $pdf = PDF::loadView('paginas.factuur_plain')->with('factuur', $factuur)->save('client.pdf');
+       // return $pdf->stream('client.pdf');
+
+       // return view('paginas.factuur_plain')->with('factuur', $factuur);
     }
 
 }

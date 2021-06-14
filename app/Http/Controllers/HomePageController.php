@@ -29,6 +29,6 @@ class HomePageController extends Controller
             if ($station->stationcode == '6330') { break; }
         }
 
-        return view('welcome')->with('station', $station);
+        return view('paginas.homepage')->with('station', $station);
     }
 }

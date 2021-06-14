@@ -19,10 +19,13 @@ use App\Http\Controllers\HomePageController;
 */
 
 Route::get('/', [HomePageController::class, 'index'])->name('homepage');
+Route::get('/content', function () {
+    return view('paginas.content');
+});
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('paginas.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/mail', function () {
@@ -34,11 +37,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/status_betaling/{id}', [MollieController::class, 'StatusBetaling']);
     Route::get('/succes', [MollieController::class, 'succes']);
 
-    Route::get('/financieel/mijn_facturen', [FacturenController::class, 'index'])->name('financieel.mijn_facturen');
-    Route::get('/financieel/mandaat_afgeven', [FacturenController::class, 'mandaat_afgeven'])->name('financieel.mandaat_afgeven');
-    Route::get('/financieel/mandaat_intrekken', [FacturenController::class, 'mandaat_intrekken'])->name('financieel.mandaat_intrekken');
-    Route::get('/financieel/factuur_betalen/{id}', [FacturenController::class, 'factuurbetalen'])->name('financieel.factuur_betalen');
-    Route::get('/financieel/factuur_weergeven/{id}', [FacturenController::class, 'factuur_weergeven'])->name('financieel.factuur_weergeven');
+    Route::get('/mijnhrb/mijn_facturen', [FacturenController::class, 'index'])->name('mijnhrb.mijn_facturen');
+    Route::get('/mijnhrb/mandaat_afgeven', [FacturenController::class, 'mandaat_afgeven'])->name('mijnhrb.mandaat_afgeven');
+    Route::get('/mijnhrb/mandaat_intrekken', [FacturenController::class, 'mandaat_intrekken'])->name('mijnhrb.mandaat_intrekken');
+    Route::get('/mijnhrb/factuur_betalen/{id}', [FacturenController::class, 'factuurbetalen'])->name('mijnhrb.factuur_betalen');
+    Route::get('/mijnhrb/factuur_weergeven/{id}', [FacturenController::class, 'factuur_weergeven'])->name('mijnhrb.factuur_weergeven');
+    Route::get('/mijnhrb/factuur_weergeven_plain/{id}', [FacturenController::class, 'factuur_weergeven_plain'])->name('mijnhrb.factuur_weergeven_plain');
 
 });
 
