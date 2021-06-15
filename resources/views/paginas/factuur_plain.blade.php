@@ -68,16 +68,6 @@
             border-top: 1px solid #C1C1C1;
         }
 
-        @media print {
-            body *, #main * {
-                display: none;
-            }
-
-            #main, #main #printarea, #main #printarea * {
-                display: block;
-            }
-        }
-
     </style>
 </head>
 <body>
