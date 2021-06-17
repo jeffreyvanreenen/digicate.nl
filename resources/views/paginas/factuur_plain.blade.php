@@ -38,7 +38,7 @@
         }
 
         .header-blok {
-            width: 100%;
+            width: 21cm;
             position: relative;
         }
 
