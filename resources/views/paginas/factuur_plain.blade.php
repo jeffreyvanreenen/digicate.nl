@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="{{ asset('css/main/main.css') }}" rel="stylesheet" type="text/css"/>
+{{--    <link href="{{ asset('css/main/main.css') }}" rel="stylesheet" type="text/css"/>--}}
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -18,6 +18,14 @@
     <script src="https://kit.fontawesome.com/af0df7a416.js" crossorigin="anonymous"></script>
 
     <style>
+        body {
+            margin:0;
+            background-color:#f4f2ee;
+            font: 12pt "Calibri, sans-serif", serif;
+            color:#000000;
+            font-weight:normal;
+        }
+
         .pagina {
             position: absolute;
             width: 21cm;

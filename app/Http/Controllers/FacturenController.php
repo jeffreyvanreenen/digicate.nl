@@ -144,7 +144,7 @@ class FacturenController extends Controller
             ],
             "description" => $facturen->factuurnummer." - ".$facturen->omschrijving,
             "customerId" => Auth::user()->mollie_customer_id,
-            "redirectUrl" => "https://digicate.nl/financieel/mijn_facturen",
+            "redirectUrl" => "https://digicate.nl/mijnhrb/mijn_facturen",
             "webhookUrl"  => "https://digicate.nl/api/webhooks/mollie",
             "metadata" => [
                 "factuurid" => $facturen->id,
@@ -187,7 +187,7 @@ class FacturenController extends Controller
 //    exit;
 
             $pdf = PDF::loadView('paginas.factuur_plain', compact('factuur', $factuur));;
-            return $pdf->download('student.pdf');
+            return $pdf->stream('student.pdf');
 
 
 //        return view('paginas.factuur_plain')->with('factuur', $factuur);
