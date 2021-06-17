@@ -59,6 +59,12 @@
             margin: 0;
         }
 
+        .introtekst {
+            width: 17cm;
+            position: relative;
+            margin: 0;
+        }
+
         .factuurtabel td {
             padding: 10px;
         }
@@ -127,6 +133,7 @@
             </tr>
         </table>
         <br/><br/>
+        <div class="introtekst">
         <p>Geachte {{ Auth::user()->name }},</p>
         <p>Hierbij ontvangt u de factuur voor onderstaande contributies en/of verenigingsgelden.
             Wij ontvangen het bedrag graag binnen de gestelde betaaltermijn op bankrekening NL70 INGB
@@ -138,6 +145,7 @@
             vernemen wij deze graag op emailadres: penningmeester@reddingsbrigade-hellevoetsluis.nl.</p>
         <p>Met vriendelijke groet,<br/>namens het bestuur,<br/><br/>Jeffrey van Reenen<br/>Penningmeester
         </p>
+        </div>
         <br/>
         <table class="factuurtabel">
             <thead>
