@@ -21,7 +21,7 @@
         body {
             margin:0;
             background-color:#f4f2ee;
-            font: 10pt "Calibri, sans-serif", serif;
+            font: 12pt "Calibri, sans-serif", serif;
             color:#000000;
             font-weight:normal;
         }
@@ -33,13 +33,17 @@
             padding: 2cm;
             margin: 0;
             border: 1px solid #eee;
-            font: 10pt "Calibri, sans-serif", serif;
+            font: 12pt "Calibri, sans-serif", serif;
             background: white;
         }
+        @page { margin: 0px; }
+        body { margin: 0px; }
+        html { margin: 0px; }
 
         .header-blok {
-            width: 21cm;
+            width: 100%;
             position: relative;
+            margin: 0;
         }
 
         .header-blok .rechts {
@@ -48,13 +52,13 @@
         }
 
         .header-blok .rechts td {
-
             padding: 0px 0px 0px 30px;
         }
 
         .factuurtabel {
             width: 100%;
             position: relative;
+            margin: 0;
         }
 
         .factuurtabel td {
