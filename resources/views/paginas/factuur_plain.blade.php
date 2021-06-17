@@ -21,7 +21,7 @@
         body {
             margin:0;
             background-color:#f4f2ee;
-            font: 12pt "Calibri, sans-serif", serif;
+            font: 10pt "Calibri, sans-serif", serif;
             color:#000000;
             font-weight:normal;
         }
@@ -33,13 +33,13 @@
             padding: 2cm;
             margin: 0;
             border: 1px solid #eee;
-            font: 12pt "Calibri, sans-serif", serif;
+            font: 10pt "Calibri, sans-serif", serif;
             background: white;
         }
         @page { margin: 0; }
 
         .header-blok {
-            width: 100%;
+            width: 17cm;
             position: relative;
             margin: 0;
         }
@@ -54,7 +54,7 @@
         }
 
         .factuurtabel {
-            width: 100%;
+            width: 17cm;
             position: relative;
             margin: 0;
         }
