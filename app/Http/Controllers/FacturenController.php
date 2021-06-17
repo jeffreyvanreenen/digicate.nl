@@ -187,7 +187,7 @@ class FacturenController extends Controller
 //    exit;
 
             $pdf = PDF::loadView('paginas.factuur_plain', compact('factuur', $factuur));;
-            return $pdf->download($factuur->factuurnummer);
+            return $pdf->download($factuur->factuurnummer.'.pdf');
 
 
 //        return view('paginas.factuur_plain')->with('factuur', $factuur);
