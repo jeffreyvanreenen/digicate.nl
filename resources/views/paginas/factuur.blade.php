@@ -6,35 +6,47 @@
         <div class="row mb-5 mt-5">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body contentText"> <div class="button_right_top">
+                    <div class="card-body contentText">
+                        <div class="button_right_top">
                             @if(($factuur->status=='open'))
-                                <a href="{{ route('mijnhrb.factuur_betalen', $factuur->id) }}"><button type="button" class="btn btn-primary">Betalen</button></a>
+                                <a href="{{ route('mijnhrb.factuur_betalen', $factuur->id) }}">
+                                    <button type="button" class="btn btn-primary">Betalen</button>
+                                </a>
                             @endif
-                            <a href="{{ route('mijnhrb.factuur_weergeven_plain', $factuur->id) }}"><button type="button" class="btn btn-primary">Downloaden</button></a>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Vraag stellen over deze factuur</button>
+                            <a href="{{ route('mijnhrb.factuur_weergeven_plain', $factuur->id) }}">
+                                <button type="button" class="btn btn-primary">Downloaden</button>
+                            </a>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModal">Vraag stellen over deze factuur
+                            </button>
                         </div>
 
                         <!-- Modal -->
                         <form method="post" action="{{ route('mijnhrb.vraag_over_factuur', $factuur->id) }}">@csrf
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Vraag stellen over deze factuur</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <textarea name="vraag" class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Typ hier uw vraag..." required></textarea>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
-                                        <button type="submit" class="btn btn-primary">Verstuur vraag</button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Vraag stellen over deze
+                                                factuur</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <textarea name="vraag" class="form-control" id="exampleFormControlTextarea1"
+                                                      rows="5" placeholder="Typ hier uw vraag..." required></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                Sluiten
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Verstuur vraag</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         </form>
 
                         <h1>{{ __('Contributiefactuur # ') }} {{ $factuur->factuurnummer }}</h1>
@@ -96,10 +108,11 @@
                         </style>
 
 
-
                         <p><strong>Status:</strong></p>
                         <p>@if(($factuur->status=='open'))
-                                Factuur is nog niet betaald. Klik <a href="{{ route('mijnhrb.factuur_betalen', $factuur->id) }}">hier</a> om de factuur direct te betalen.
+                                Factuur is nog niet betaald. Klik <a
+                                    href="{{ route('mijnhrb.factuur_betalen', $factuur->id) }}">hier</a> om de factuur
+                                direct te betalen.
                             @elseif(($factuur->status=='betaald'))
                                 Factuur is betaald
                             @elseif(($factuur->status=='concept'))
@@ -153,13 +166,16 @@
                             <br/><br/>
                             <p>Geachte {{ Auth::user()->name }},</p>
                             <p>Hierbij ontvangt u de factuur voor onderstaande contributies en/of verenigingsgelden.
-                                Wij ontvangen het bedrag graag binnen de gestelde betaaltermijn op bankrekening NL70 INGB
+                                Wij ontvangen het bedrag graag binnen de gestelde betaaltermijn op bankrekening NL70
+                                INGB
                                 0003 5896 03 ten name van Helvoetse Reddingsbrigade onder vermelding van uitsluitend
                                 lidnummer en factuurnummer: {{ Auth::user()->lidnummer }}-{{ $factuur->factuurnummer }}.
                                 Wilt u voor tijdige betaling zorgdragen?
                             </p>
-                            <p>Wij vertrouwen erop u hiermee voldoende te hebben geïnformeerd. Indien u nog vragen heeft,
-                                vernemen wij deze graag op emailadres: penningmeester@reddingsbrigade-hellevoetsluis.nl.</p>
+                            <p>Wij vertrouwen erop u hiermee voldoende te hebben geïnformeerd. Indien u nog vragen
+                                heeft,
+                                vernemen wij deze graag op emailadres:
+                                penningmeester@reddingsbrigade-hellevoetsluis.nl.</p>
                             <p>Met vriendelijke groet,<br/>namens het bestuur,<br/><br/>Jeffrey van Reenen<br/>Penningmeester
                             </p>
                             <br/>
@@ -233,7 +249,8 @@
                                     <td class="randjeboven">Subtotaal:<br/>
                                         btw:<br/>
                                         <strong>Factuurbedrag:</strong></td>
-                                    <td class="randjeboven" style="text-align: right">&euro; {{ number_format($totaal_excl_btw, 2, ',', '.') }}<br/>
+                                    <td class="randjeboven" style="text-align: right">
+                                        &euro; {{ number_format($totaal_excl_btw, 2, ',', '.') }}<br/>
                                         &euro; {{ number_format($btw_totaal, 2, ',', '.') }}<br/>
                                         <strong>&euro; {{ number_format($totaal, 2, ',', '.') }}</strong>
                                     </td>
@@ -249,7 +266,8 @@
                             @php(setlocale(LC_ALL, 'nld_nld'))
                             @forelse($factuur->factuurlog as $factuurlog)
                                 @if($factuurlog->hide_for_user != 1)
-                                    <li>{{ date("d-m-Y H:i", $factuurlog->tijd) }} - {{ $factuurlog->omschrijving }}</li>
+                                    <li>{{ date("d-m-Y H:i", $factuurlog->tijd) }}
+                                        - {{ $factuurlog->omschrijving }}</li>
                                 @endif
                             @empty
                                 <li>Geen log om weer te geven.</li>
