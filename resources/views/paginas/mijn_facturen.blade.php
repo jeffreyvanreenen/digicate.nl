@@ -78,7 +78,7 @@
                                             <a href="{{ route('mijnhrb.factuur_betalen', $factuur->id) }}">Betalen</a> -
                                         @endif
                                         <a href="{{ route('mijnhrb.factuur_weergeven', $factuur->id) }}">Open</a>
-                                        - <a href="{{ route('mijnhrb.factuur_weergeven_plain', $factuur->id) }}">Pdf</a>
+                                        - <a href="{{ route('mijnhrb.factuur_weergeven_plain', $factuur->id) }}">Download</a>
                                     </td>
                                 </tr>
                             @empty

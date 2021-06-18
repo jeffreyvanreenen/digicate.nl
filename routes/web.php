@@ -37,13 +37,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/status_betaling/{id}', [MollieController::class, 'StatusBetaling']);
     Route::get('/succes', [MollieController::class, 'succes']);
 
-    Route::get('/mijnhrb/mijn_facturen', [FacturenController::class, 'index'])->name('mijnhrb.mijn_facturen');
-    Route::get('/mijnhrb/mandaat_afgeven', [FacturenController::class, 'mandaat_afgeven'])->name('mijnhrb.mandaat_afgeven');
-    Route::get('/mijnhrb/mandaat_intrekken', [FacturenController::class, 'mandaat_intrekken'])->name('mijnhrb.mandaat_intrekken');
-    Route::get('/mijnhrb/factuur_betalen/{id}', [FacturenController::class, 'factuurbetalen'])->name('mijnhrb.factuur_betalen');
-    Route::get('/mijnhrb/factuur_weergeven/{id}', [FacturenController::class, 'factuur_weergeven'])->name('mijnhrb.factuur_weergeven');
-    Route::get('/mijnhrb/factuur_weergeven_plain/{id}', [FacturenController::class, 'factuur_weergeven_plain'])->name('mijnhrb.factuur_weergeven_plain');
-
+    Route::prefix('mijnhrb')->group(function () {
+        Route::get('/mijn_facturen', [FacturenController::class, 'index'])->name('mijnhrb.mijn_facturen');
+        Route::get('/mandaat_afgeven', [FacturenController::class, 'mandaat_afgeven'])->name('mijnhrb.mandaat_afgeven');
+        Route::get('/mandaat_intrekken', [FacturenController::class, 'mandaat_intrekken'])->name('mijnhrb.mandaat_intrekken');
+        Route::get('/factuur_betalen/{id}', [FacturenController::class, 'factuurbetalen'])->name('mijnhrb.factuur_betalen');
+        Route::get('/factuur_weergeven/{id}', [FacturenController::class, 'factuur_weergeven'])->name('mijnhrb.factuur_weergeven');
+        Route::get('/factuur_weergeven_plain/{id}', [FacturenController::class, 'factuur_weergeven_plain'])->name('mijnhrb.factuur_weergeven_plain');
+        Route::post('/vraag-stellen/{id}', [FacturenController::class, 'vraag_over_factuur'])->name('mijnhrb.vraag_over_factuur');
+    });
 });
 
 Route::get('/send-mail', function () {
@@ -54,5 +56,5 @@ Route::get('/send-mail', function () {
 
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 

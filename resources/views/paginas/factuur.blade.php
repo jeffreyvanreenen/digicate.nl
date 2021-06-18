@@ -6,8 +6,43 @@
         <div class="row mb-5 mt-5">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body contentText">
+                    <div class="card-body contentText"> <div class="button_right_top">
+                            @if(($factuur->status=='open'))
+                                <a href="{{ route('mijnhrb.factuur_betalen', $factuur->id) }}"><button type="button" class="btn btn-primary">Betalen</button></a>
+                            @endif
+                            <a href="{{ route('mijnhrb.factuur_weergeven_plain', $factuur->id) }}"><button type="button" class="btn btn-primary">Downloaden</button></a>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Vraag stellen over deze factuur</button>
+                        </div>
+
+                        <!-- Modal -->
+                        <form method="post" action="{{ route('mijnhrb.vraag_over_factuur', $factuur->id) }}">@csrf
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Vraag stellen over deze factuur</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <textarea name="vraag" class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Typ hier uw vraag..." required></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+                                        <button type="submit" class="btn btn-primary">Verstuur vraag</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+
                         <h1>{{ __('Contributiefactuur # ') }} {{ $factuur->factuurnummer }}</h1>
+                        @if(session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session()->get('message') }}
+                            </div>
+                        @endif
                         <style>
                             .pagina {
                                 position: relative;
@@ -59,6 +94,8 @@
                             }
 
                         </style>
+
+
 
                         <p><strong>Status:</strong></p>
                         <p>@if(($factuur->status=='open'))
@@ -212,10 +249,10 @@
                             @php(setlocale(LC_ALL, 'nld_nld'))
                             @forelse($factuur->factuurlog as $factuurlog)
                                 @if($factuurlog->hide_for_user != 1)
-                                    <li>- {{ date("d-m-Y H:i", $factuurlog->tijd) }} - {{ $factuurlog->omschrijving }}</li>
+                                    <li>{{ date("d-m-Y H:i", $factuurlog->tijd) }} - {{ $factuurlog->omschrijving }}</li>
                                 @endif
                             @empty
-                                <li>- Geen log om weer te geven</li>
+                                <li>Geen log om weer te geven.</li>
                             @endforelse
                         </ul>
                         </p>

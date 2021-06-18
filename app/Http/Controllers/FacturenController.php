@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InvoiceLog;
 use Illuminate\Http\Request;
 use Auth;
 use phpDocumentor\Reflection\Types\Null_;
 use App\Models\Invoice;
 use App\Models\Factuurregel;
 use PDF;
+use App\Models\Support;
+use Illuminate\Support\Facades\Validator;
 
 class FacturenController extends Controller
 {
@@ -191,6 +194,36 @@ class FacturenController extends Controller
 
 
 //        return view('paginas.factuur_plain')->with('factuur', $factuur);
+    }
+
+    public function vraag_over_factuur(Request $request, $id){
+
+        $validator = Validator::make($request->all(), [
+            'vraag' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect(route('mijnhrb.factuur_weergeven', $id))
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $support = new Support();
+        $support->userid = Auth::user()->id;
+        $support->type = 'factuur';
+        $support->factuurid = $id;
+        $support->vraag = request('vraag');
+        $support->save();
+
+        $InvoiceLog = new InvoiceLog();
+        $InvoiceLog->invoice_id = $id;
+        $InvoiceLog->omschrijving = Auth::user()->name.' heeft een vraag gesteld over een factuur: '.request('vraag');
+        $InvoiceLog->hide_for_user = 0;
+        $InvoiceLog->tijd = time();
+        $InvoiceLog->save();
+
+        return redirect(route('mijnhrb.factuur_weergeven', $id))->with('message', 'Uw vraag is succesvol verstuurd. Wij streven ernaar om u zo snel mogelijk een reactie te geven.');
+
     }
 
 }
